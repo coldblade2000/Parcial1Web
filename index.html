@@ -11,34 +11,48 @@
     <link href="index.css" type="text/css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <title>Hello, world!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rochester&display=swap" rel="stylesheet">
+    <title>Restaurant & Lounge</title>
 </head>
 <body>
-<div>
-    <p id="cartcount">0 items
-    </p>
-</div>
+<header>
+    <div class="row">
+        <div class="col-md-6 shoppingcart">
+            <img src="assets/image%201.png" alt="">
+            <p id="cartcount" class="d-none">0 items</p>
+        </div>
+        <div class="col-md-6">
+            <p class="brandname">
+                Restaurant & Lounge
+            </p>
+        </div>
+    </div>
+    <div class="headdivider d-none d-md-block"></div>
+    <img src="assets/mafe-estudio-LV2p9Utbkbw-unsplash.jpg" alt="" class="d-none d-md-block">
+</header>
+<div class="headdivider d-none d-md-block"></div>
 <div class="d-none d-md-block">
     <nav class="navbar navbar-expand bg-dark-grey">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" onclick="selectCategory('Burguers')">Burguers</a>
+                        <a class="nav-category active" data-category="Burguers" onclick="selectCategory('Burguers')">Burguers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="selectCategory('Tacos')">Tacos</a>
+                        <a class="nav-category" href="#" data-category="Tacos" onclick="selectCategory('Tacos')">Tacos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="selectCategory('Salads')">Salads</a>
+                        <a class="nav-category" href="#" data-category="Salads" onclick="selectCategory('Salads')">Salads</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="selectCategory('Desserts')">Desserts</a>
+                        <a class="nav-category" href="#" data-category="Desserts" onclick="selectCategory('Desserts')">Desserts</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="selectCategory('Drinks and Sides')">Drinks & Slides</a>
+                        <a class="nav-category" href="#" data-category="Drinks" onclick="selectCategory('Drinks and Sides')">Drinks & Slides</a>
                     </li>
 
                 </ul>
@@ -46,6 +60,13 @@
         </div>
     </nav>
 </div>
+<div class="d-block d-md-none">
+    <nav class="category-switcher d-flex" onclick="switchCategory()">
+        <p id="category-switcher-title">Burguers</p>
+        <img src="assets/arrow1.png" alt="">
+    </nav>
+</div>
+
 
 
 <main class="container">
@@ -53,17 +74,21 @@
         <h1 id="category-title" class="text-center">Burguers</h1>
         <div class="h1divider"></div>
     </div>
-    <div class="row" id="itemrow">
+    <div class="row g-1" id="itemrow">
         <div class="itemcard col-md-3">
             <img src="assets/junior-reis-XdNgE6NIHp4-unsplash.jpg" alt="">
             <h3>Veggie Burger</h3>
             <p>Lorem ipsum lorem ipsumLorem ipsum lorem ipsumLorem ipsum lorem ipsumLorem ipsum lorem ipsum</p>
-            <p>$10.01</p>
+            <p class="itemprice ">$10.01</p>
             <a href="#" class="cartbutton text-center">Add to cart</a>
         </div>
     </div>
 
 </main>
+<footer>
+    <p>Contact us: +57 3102171020 - info@restaurant.com  - @restaurant</p>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="index.js"></script>
 </body>

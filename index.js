@@ -23,7 +23,8 @@ const createItem = (name, description, price, image) => {
     const descriptionElem = document.createElement("p")
     descriptionElem.textContent = description
     const priceElem = document.createElement("p")
-    priceElem.textContent = "$" + price
+    priceElem.classList.add("itemprice")
+    priceElem.textContent = "$" + price.toFixed(2)
 
     const buttonElem = document.createElement("a")
     buttonElem.textContent = "Add to cart"
@@ -44,13 +45,30 @@ fetch('https://gist.githubusercontent.com/josejbocanegra/9a28c356416badb8f9173da
         console.log(data)
         selectCategory("Burguers")
     });
+const switchCategory = () => {
+    const switcher = document.getElementById("category-switcher-title");
+
+    const newCategory = data[(data.indexOf(data.find(e=>e.name===category))+1) % data.length].name
+    selectCategory(newCategory)
+    switcher.innerText = category
+}
+
 const selectCategory = (selCategory) => {
+    const categorytabs = document.querySelectorAll(".nav-item a")
+    categorytabs.forEach((e) => {
+        if (e.getAttribute("data-category") === selCategory)
+            e.classList.add("active")
+        else
+            e.classList.remove("active")
+    })
+    category = selCategory
     const row = document.getElementById("itemrow")
     row.innerHTML = ""
     const title = document.getElementById("category-title")
     let categoryObj = undefined
+
     for (const datum of data) {
-        if (datum.name === selCategory){
+        if (datum.name === selCategory) {
             categoryObj = datum
             break;
         }
@@ -65,5 +83,10 @@ const addToCart = (item) => {
     cartItems.push(item)
     const cartcount = document.getElementById("cartcount");
     cartcount.textContent = `${cartItems.length} items`
+    if (cartItems.length > 0) {
+        cartcount.classList.remove("d-none")
+    } else {
+        cartcount.classList.add("d-none")
+    }
     console.log("click")
 }
