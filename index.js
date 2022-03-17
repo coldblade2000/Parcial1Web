@@ -108,8 +108,8 @@ const renderOrderDetail = () => {
     smalldiv.innerText = ""
     for (let i = 0; i < cartItems.length; i++) {
         let cartItem = cartItems[i];
-        tbody.appendChild(renderOrderDetailItem(cartItem, i + 1))
-        smalldiv.appendChild(renderOrderDetailItem(cartItem, i + 1))
+        tbody.appendChild(renderOrderDetailItemBig(cartItem, i + 1))
+        smalldiv.appendChild(renderOrderDetailItemSmall(cartItem))
     }
 
     const totalprice = document.getElementById("totalprice")
@@ -119,7 +119,7 @@ const renderOrderDetail = () => {
     }
     totalprice.innerText = `Total: $${price.toFixed(2)}`
 }
-const renderOrderDetailItem = (item, index) => {
+const renderOrderDetailItemBig = (item, index) => {
     const tr = document.createElement("tr");
 
     const itemtd = document.createElement("td");
@@ -147,8 +147,8 @@ const renderOrderDetailItem = (item, index) => {
     plusdiv.innerText = "+"
     const minusdiv = document.createElement("div");
     minusdiv.innerText = "-"
-    plusdiv.addEventListener("click", ()=>addExtraItem(item.description, true))
-    minusdiv.addEventListener("click", ()=>addExtraItem(item.description, false))
+    plusdiv.addEventListener("click", () => addExtraItem(item.description, true))
+    minusdiv.addEventListener("click", () => addExtraItem(item.description, false))
     buttonstd.appendChild(plusdiv)
     buttonstd.appendChild(minusdiv)
 
@@ -157,12 +157,35 @@ const renderOrderDetailItem = (item, index) => {
     return tr
 }
 
+const renderOrderDetailItemSmall = (item) => {
+    const div = document.createElement("div");
+    div.classList.add("order-detail-item-small")
+    const desc = document.createElement("p");
+    desc.innerText = `${item.quantity} ${item.description}`
+
+    div.appendChild(desc)
+
+    const buttonsdiv = document.createElement("div");
+    buttonsdiv.classList.add("d-flex", "flex-row")
+    const plusdiv = document.createElement("div");
+    plusdiv.innerText = "+"
+    const minusdiv = document.createElement("div");
+    minusdiv.innerText = "-"
+    plusdiv.addEventListener("click", () => addExtraItem(item.description, true))
+    minusdiv.addEventListener("click", () => addExtraItem(item.description, false))
+    buttonsdiv.appendChild(plusdiv)
+    buttonsdiv.appendChild(minusdiv)
+    div.appendChild(buttonsdiv)
+
+    return div
+}
+
 const addExtraItem = (itemDescription, increment) => {
     for (let i = 0; i < cartItems.length; i++) {
         if (cartItems[i].description === itemDescription) {
-            if (!increment && cartItems[i].quantity > 0){
+            if (!increment && cartItems[i].quantity > 0) {
                 cartItems[i].quantity = cartItems[i].quantity - 1
-            }else if (increment){
+            } else if (increment) {
                 cartItems[i].quantity = cartItems[i].quantity + 1
             }
             break;
