@@ -103,11 +103,15 @@ const toggleOrderDetail = () => {
 
 const renderOrderDetail = () => {
     const tbody = document.getElementById("order-detail-big-tbody");
+    const smalldiv = document.getElementById("order-detail-small")
     tbody.innerText = ""
+    smalldiv.innerText = ""
     for (let i = 0; i < cartItems.length; i++) {
         let cartItem = cartItems[i];
         tbody.appendChild(renderOrderDetailItem(cartItem, i + 1))
+        smalldiv.appendChild(renderOrderDetailItem(cartItem, i + 1))
     }
+
     const totalprice = document.getElementById("totalprice")
     let price = 0
     for (const cartItem of cartItems) {
