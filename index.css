@@ -284,3 +284,13 @@ footer > p {
     display: flex;
     flex-direction: row;
 }
+#totalprice{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+
+
+    color: #000000;
+}

@@ -108,6 +108,12 @@ const renderOrderDetail = () => {
         let cartItem = cartItems[i];
         tbody.appendChild(renderOrderDetailItem(cartItem, i + 1))
     }
+    const totalprice = document.getElementById("totalprice")
+    let price = 0
+    for (const cartItem of cartItems) {
+        price += cartItem.unitPrice * cartItem.quantity
+    }
+    totalprice.innerText = `Total: $${price.toFixed(2)}`
 }
 const renderOrderDetailItem = (item, index) => {
     const tr = document.createElement("tr");
